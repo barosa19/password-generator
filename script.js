@@ -23,48 +23,45 @@ function generatePassword() {
   if (UseUpper === true) {
     var indexU = Math.floor(Math.random() * arrayUpperletters.length);
     var randomU = arrayUpperletters[indexU];
+    randomPwd.push.apply(randomPwd, arrayUpperletters)
+
   }
   else {
     randomU = ""
   }
-  randomPwd.push(randomU)
 
   //LOWERCASE CONDITIONS
   let UseLower = confirm("Include Lowercase?")
   if (UseLower === true) {
     var indexL = Math.floor(Math.random() * arrayLetters.length);
     var randomL = arrayLetters[indexL];
+    randomPwd.push.apply(randomPwd, arrayLetters)
   }
   else {
     randomL = ""
   }
-
-  randomPwd.push(randomL)
 
   //NUMBER CONDITIONS
   let UseNumber = confirm("Include Numbers?")
   if (UseNumber === true) {
     var indexN = Math.floor(Math.random() * numbers.length);
     var randomN = numbers[indexN];
+    randomPwd.push.apply(randomPwd, numbers)
   }
   else {
     randomN = ""
   }
-
-  randomPwd.push(randomN)
 
   //SPECIAL CHARACTER CONDITIONS
   let UseSpecial = confirm("Include Special Characters?")
   if (UseSpecial === true) {
     var indexS = Math.floor(Math.random() * specialC.length);
     var randomS = specialC[indexS];
+    randomPwd.push.apply(randomPwd, specialC)
   }
   else {
     randomS = ""
   }
-
-  // TODO: HAVE TO ELIMINATE EMPTY STRINGS FROM ARRAY
-  randomPwd.push(randomS)
 
   // THIS IS FOR TESTING
   return randomU + randomL + randomN + randomS;
