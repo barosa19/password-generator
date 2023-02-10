@@ -10,13 +10,12 @@ let randomPwd = [];
 function generatePassword() {
 
   //LENGTH CONDITIONS
-  let pwdlengthQ = prompt("Please indicate desired length of password");
-  let pwdlength = Number (pwdlength)
+  let pwdlength = parseInt(prompt("Please indicate desired length of password"),10);
 
-  if (pwdlength === NaN || 8 <= pwdlength <= 128){
-    return alert("Please enter a number creater than 8 and less than 128");
+  if (Number.isNaN(pwdlength) || pwdlength < 8 || pwdlength > 128){
+    alert("Please enter a number greater than 8 and less than 128");
+    return null;
   }
- 
 
   //UPPERCASE CONDITIONS
   let UseUpper = confirm("Include Uppercase?");
@@ -66,10 +65,14 @@ function generatePassword() {
     randomS = ""
   };
 
-//Then I need to create a for loop to add a character from that new array until desired amount of characters are in a new array then from there I need to hit again with random and boom that final array !!! 
-//Make that array to string by using .toString()
-//And then .split yo eliminate ,
-//Use either .value or .textcontent
+  console.log(pwdlength)
+
+  // TODO: Create For loop to select pwdlength characters from randomPWd array
+  // TODO: Combine the randomU, randomL, randomN, and randomS to filtered random PWD
+  // TODO: Create For loop to randomize the filtered random PWD 
+  //Make that array to string by using .toString() and then .split yo eliminate ,
+  //Use either .value or .textcontent
+
  // THIS IS FOR TESTING
   return randomU + randomL + randomN + randomS;
 }
