@@ -7,63 +7,70 @@ let numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 let specialC = ["!", "@", "#", "$", "%", "^", "&", "*"];
 let randomPwd = [];
 
-//If true then randomly choose one of the characters from the list requested AND also append it to a new array. 
-//Then I need to create a for loop to add a character from that new array until desired amount of characters are in a new array then from there I need to hit again with random and boom that final array !!! 
-//Make that array to string by using .toString()
-//And then .split yo eliminate ,
-//Use either .value or .textcontent
-
 function generatePassword() {
 
   //LENGTH CONDITIONS
-  let pwdlength = prompt("Please indicate desired length of password")
+  let pwdlengthQ = prompt("Please indicate desired length of password");
+  let pwdlength = Number (pwdlength)
+
+  if (pwdlength === NaN || 8 <= pwdlength <= 128){
+    return alert("Please enter a number creater than 8 and less than 128");
+  }
+ 
 
   //UPPERCASE CONDITIONS
-  let UseUpper = confirm("Include Uppercase?")
+  let UseUpper = confirm("Include Uppercase?");
   if (UseUpper === true) {
     var indexU = Math.floor(Math.random() * arrayUpperletters.length);
     var randomU = arrayUpperletters[indexU];
     randomPwd.push.apply(randomPwd, arrayUpperletters)
-
+    pwdlength --
   }
   else {
     randomU = ""
-  }
+  };
 
   //LOWERCASE CONDITIONS
-  let UseLower = confirm("Include Lowercase?")
+  let UseLower = confirm("Include Lowercase?");
   if (UseLower === true) {
     var indexL = Math.floor(Math.random() * arrayLetters.length);
     var randomL = arrayLetters[indexL];
     randomPwd.push.apply(randomPwd, arrayLetters)
+    pwdlength --
   }
   else {
     randomL = ""
-  }
+  };
 
   //NUMBER CONDITIONS
-  let UseNumber = confirm("Include Numbers?")
+  let UseNumber = confirm("Include Numbers?");
   if (UseNumber === true) {
     var indexN = Math.floor(Math.random() * numbers.length);
     var randomN = numbers[indexN];
     randomPwd.push.apply(randomPwd, numbers)
+    pwdlength --
   }
   else {
     randomN = ""
-  }
+  };
 
   //SPECIAL CHARACTER CONDITIONS
-  let UseSpecial = confirm("Include Special Characters?")
+  let UseSpecial = confirm("Include Special Characters?");
   if (UseSpecial === true) {
     var indexS = Math.floor(Math.random() * specialC.length);
     var randomS = specialC[indexS];
     randomPwd.push.apply(randomPwd, specialC)
+    pwdlength --
   }
   else {
     randomS = ""
-  }
+  };
 
-  // THIS IS FOR TESTING
+//Then I need to create a for loop to add a character from that new array until desired amount of characters are in a new array then from there I need to hit again with random and boom that final array !!! 
+//Make that array to string by using .toString()
+//And then .split yo eliminate ,
+//Use either .value or .textcontent
+ // THIS IS FOR TESTING
   return randomU + randomL + randomN + randomS;
 }
 
