@@ -15,8 +15,10 @@ let randomPwd = [];
 
 function generatePassword() {
 
+  //LENGTH CONDITIONS
   let pwdlength = prompt("Please indicate desired length of password")
 
+  //UPPERCASE CONDITIONS
   let UseUpper = confirm("Include Uppercase?")
   if (UseUpper === true) {
     var indexU = Math.floor(Math.random() * arrayUpperletters.length);
@@ -25,7 +27,9 @@ function generatePassword() {
   else {
     randomU = ""
   }
+  randomPwd.push(randomU)
 
+  //LOWERCASE CONDITIONS
   let UseLower = confirm("Include Lowercase?")
   if (UseLower === true) {
     var indexL = Math.floor(Math.random() * arrayLetters.length);
@@ -35,6 +39,9 @@ function generatePassword() {
     randomL = ""
   }
 
+  randomPwd.push(randomL)
+
+  //NUMBER CONDITIONS
   let UseNumber = confirm("Include Numbers?")
   if (UseNumber === true) {
     var indexN = Math.floor(Math.random() * numbers.length);
@@ -43,7 +50,10 @@ function generatePassword() {
   else {
     randomN = ""
   }
-  
+
+  randomPwd.push(randomN)
+
+  //SPECIAL CHARACTER CONDITIONS
   let UseSpecial = confirm("Include Special Characters?")
   if (UseSpecial === true) {
     var indexS = Math.floor(Math.random() * specialC.length);
@@ -53,6 +63,10 @@ function generatePassword() {
     randomS = ""
   }
 
+  // TODO: HAVE TO ELIMINATE EMPTY STRINGS FROM ARRAY
+  randomPwd.push(randomS)
+
+  // THIS IS FOR TESTING
   return randomU + randomL + randomN + randomS;
 }
 
