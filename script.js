@@ -66,6 +66,13 @@ function generatePassword() {
     randomS = ""
   };
 
+  if (UseUpper === false && UseLower === false && UseNumber === false && UseSpecial === false){
+    alert("Please select atleast one character");
+    return null;
+  }
+
+  //
+
   // Generates a random pwd array with desired pwd length
   for (var i = 0; i < pwdlength; i++) {
     var indexR = Math.floor(Math.random() * arrayOfoptions.length)
