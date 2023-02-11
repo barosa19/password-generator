@@ -5,14 +5,15 @@ let upperLetters = letters[0].toUpperCase();
 let arrayUpperletters = [...upperLetters];
 let numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 let specialC = ["!", "@", "#", "$", "%", "^", "&", "*"];
+let arrayOfoptions = [];
 let randomPwd = [];
 
 function generatePassword() {
 
   //LENGTH CONDITIONS
-  let pwdlength = parseInt(prompt("Please indicate desired length of password"),10);
+  let pwdlength = parseInt(prompt("Please indicate desired length of password"), 10);
 
-  if (Number.isNaN(pwdlength) || pwdlength < 8 || pwdlength > 128){
+  if (Number.isNaN(pwdlength) || pwdlength < 8 || pwdlength > 128) {
     alert("Please enter a number greater than 8 and less than 128");
     return null;
   }
@@ -22,8 +23,8 @@ function generatePassword() {
   if (UseUpper === true) {
     var indexU = Math.floor(Math.random() * arrayUpperletters.length);
     var randomU = arrayUpperletters[indexU];
-    randomPwd.push.apply(randomPwd, arrayUpperletters)
-    pwdlength --
+    arrayOfoptions.push.apply(arrayOfoptions, arrayUpperletters)
+    pwdlength--
   }
   else {
     randomU = ""
@@ -34,8 +35,8 @@ function generatePassword() {
   if (UseLower === true) {
     var indexL = Math.floor(Math.random() * arrayLetters.length);
     var randomL = arrayLetters[indexL];
-    randomPwd.push.apply(randomPwd, arrayLetters)
-    pwdlength --
+    arrayOfoptions.push.apply(arrayOfoptions, arrayLetters)
+    pwdlength--
   }
   else {
     randomL = ""
@@ -46,8 +47,8 @@ function generatePassword() {
   if (UseNumber === true) {
     var indexN = Math.floor(Math.random() * numbers.length);
     var randomN = numbers[indexN];
-    randomPwd.push.apply(randomPwd, numbers)
-    pwdlength --
+    arrayOfoptions.push.apply(arrayOfoptions, numbers)
+    pwdlength--
   }
   else {
     randomN = ""
@@ -58,24 +59,32 @@ function generatePassword() {
   if (UseSpecial === true) {
     var indexS = Math.floor(Math.random() * specialC.length);
     var randomS = specialC[indexS];
-    randomPwd.push.apply(randomPwd, specialC)
-    pwdlength --
+    arrayOfoptions.push.apply(arrayOfoptions, specialC)
+    pwdlength--
   }
   else {
     randomS = ""
   };
 
-  console.log(pwdlength)
+  // Generates a random pwd array with desired pwd length
+  for (var i = 0; i < pwdlength; i++) {
+    var indexR = Math.floor(Math.random() * arrayOfoptions.length)
+    var randomR = arrayOfoptions[indexR]
+    randomPwd.splice(i, 0, randomR)
+  }
 
-  // TODO: Create For loop to select pwdlength characters from randomPWd array
-  // TODO: Combine the randomU, randomL, randomN, and randomS to filtered random PWD
-  // TODO: Create For loop to randomize the filtered random PWD 
-  //Make that array to string by using .toString() and then .split yo eliminate ,
-  //Use either .value or .textcontent
+  // Ensures user criteries are met
+  randomPwd.push(randomU, randomL, randomN, randomS)
 
- // THIS IS FOR TESTING
-  return randomU + randomL + randomN + randomS;
+  // Converts the Array to string and removes commas
+  let randomPwdS = randomPwd.toString()
+  let randomPwdClean = randomPwdS.replace(/,/g, "")
+
+  return randomPwdClean
 }
+
+// To add some more randomness to it I should 
+// TODO: need to reset the randomPwd array to empty
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
@@ -87,7 +96,6 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button
