@@ -1,12 +1,13 @@
 // Global Variables
-let letters = ["abcdefghijklmnopqrstuvwxyz"];
-let arrayLetters = [...letters[0]];
-let upperLetters = letters[0].toUpperCase();
-let arrayUpperletters = [...upperLetters];
-let numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-let specialC = ["!", "@", "#", "$", "%", "^", "&", "*"];
+var letters = ["abcdefghijklmnopqrstuvwxyz"];
+var arrayLetters = [...letters[0]];
+var upperLetters = letters[0].toUpperCase();
+var arrayUpperletters = [...upperLetters];
+var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+var specialC = ["!", "@", "#", "$", "%", "^", "&", "*"];
 
 function generatePassword() {
+  // Local Variables
   let randomPwd = [];
   let arrayOfoptions = [];
 
@@ -79,15 +80,29 @@ function generatePassword() {
     randomPwd.splice(i, 0, randomR)
   }
 
+  // FUnction shuffles randomPwd ater user criteria is pushed
+  function arrShuffler (arr) {
+    var j;
+    var x;
+    var i;
+    for (i = arr.length - 1; i > 0; i--) {
+      j = Math.floor(Math.random() * (i + 1));
+      x= arr[i];
+      arr[i] = arr[j];
+      arr[j] = x;
+    }
+    return arr;
+  }
+
   // Ensures user criteries are met
-  // To add some more randomness hit this aray with another for loop
   randomPwd.push(randomU, randomL, randomN, randomS)
+  let result =  arrShuffler(randomPwd);
+  return result.join("");
 
-  // Converts the Array to string and removes commas
-  let randomPwdS = randomPwd.toString()
-  let randomPwdClean = randomPwdS.replace(/,/g, "")
-
-  return randomPwdClean
+  // Method without  arrShuffler
+  /* let randomPwdS = randomPwd.toString()
+  let randomPwdClean = randomPwdS.replace(/,/g, "") 
+  return randomPwdClean */
 }
 
 // Get references to the #generate element
