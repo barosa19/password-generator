@@ -66,12 +66,11 @@ function generatePassword() {
     randomS = ""
   };
 
+  // Forces user to select one of the conditions
   if (UseUpper === false && UseLower === false && UseNumber === false && UseSpecial === false){
-    alert("Please select atleast one character");
+    alert("Please select atleast one condition");
     return null;
   }
-
-  //
 
   // Generates a random pwd array with desired pwd length
   for (var i = 0; i < pwdlength; i++) {
@@ -88,16 +87,11 @@ function generatePassword() {
   let randomPwdS = randomPwd.toString()
   let randomPwdClean = randomPwdS.replace(/,/g, "")
 
-  console.log(randomPwd)
-
   return randomPwdClean
 }
 
-// TODO: need to reset the arrayOfoptions array to empty
-
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
-
 
 // Write password to the #password input
 function writePassword() {
